@@ -92,7 +92,7 @@ if (canvas) {
     };
 
     const makeParticles = () => {
-        const count = width < 720 ? 96 : 170;
+        const count = width < 720 ? 125 : 230;
 
         particles = Array.from({ length: count }, (_, index) => new Particle(index, count));
     };
@@ -137,21 +137,6 @@ if (canvas) {
         }
     };
 
-    const drawColorWash = () => {
-        const speedAlpha = Math.min(0.22, 0.045 + mouse.speed * 0.0018);
-        const radius = 210 + Math.min(mouse.speed * 1.3, 170);
-        const gradient = ctx.createRadialGradient(swarm.x, swarm.y, 0, swarm.x, swarm.y, radius);
-
-        gradient.addColorStop(0, `rgba(66, 133, 244, ${speedAlpha})`);
-        gradient.addColorStop(0.38, `rgba(52, 168, 83, ${speedAlpha * 0.42})`);
-        gradient.addColorStop(0.72, `rgba(251, 188, 4, ${speedAlpha * 0.22})`);
-        gradient.addColorStop(1, 'rgba(5, 5, 5, 0)');
-
-        ctx.globalCompositeOperation = 'screen';
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, width, height);
-    };
-
     const render = (time = 0) => {
         ctx.globalCompositeOperation = 'source-over';
         ctx.fillStyle = 'rgba(5, 5, 5, 0.18)';
@@ -166,7 +151,6 @@ if (canvas) {
             particles.forEach((particle) => particle.update(time));
         }
 
-        drawColorWash();
         ctx.globalCompositeOperation = 'lighter';
         drawConnections();
         particles.forEach((particle) => particle.draw());

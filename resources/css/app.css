@@ -78,8 +78,8 @@ body {
 .hero-content {
     position: relative;
     z-index: 3;
-    width: min(1120px, calc(100% - 32px));
-    padding: clamp(72px, 12vh, 136px) 0;
+    width: min(860px, calc(100% - 32px));
+    padding: clamp(64px, 11vh, 120px) 0;
     text-align: center;
     pointer-events: none;
     mix-blend-mode: difference;
@@ -91,17 +91,17 @@ body {
     gap: 10px;
     align-items: center;
     justify-content: center;
-    margin: 0 0 clamp(28px, 5vh, 48px);
+    margin: 0 0 clamp(24px, 4vh, 38px);
     pointer-events: auto;
 }
 
 .hero-links a {
     display: inline-grid;
-    min-width: 96px;
-    min-height: 40px;
-    padding: 10px 18px;
-    font-size: 0.9rem;
-    font-weight: 700;
+    min-width: 92px;
+    min-height: 38px;
+    padding: 10px 16px;
+    font-size: 0.84rem;
+    font-weight: 750;
     line-height: 1;
     color: #fff;
     text-decoration: none;
@@ -123,30 +123,31 @@ body {
 }
 
 .hero-kicker {
-    margin: 0 0 20px;
-    font-size: clamp(0.78rem, 1.3vw, 0.95rem);
+    margin: 0 0 18px;
+    font-size: clamp(0.72rem, 1vw, 0.86rem);
     font-weight: 700;
     line-height: 1.2;
     color: rgb(255 255 255 / 0.76);
     text-transform: uppercase;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.2em;
 }
 
 .hero-content h1 {
-    max-width: 10ch;
+    max-width: 12ch;
     margin: 0 auto;
-    font-size: clamp(4.8rem, 17vw, 13.4rem);
-    font-weight: 800;
-    line-height: 0.82;
+    font-size: clamp(3.6rem, 11vw, 8.8rem);
+    font-weight: 850;
+    line-height: 0.9;
     letter-spacing: 0;
     text-wrap: balance;
+    text-shadow: 0 14px 52px rgb(255 255 255 / 0.16);
 }
 
 .hero-copy {
-    width: min(620px, 100%);
-    margin: clamp(24px, 4vw, 42px) auto 0;
-    font-size: clamp(1rem, 2vw, 1.22rem);
-    line-height: 1.65;
+    width: min(540px, 100%);
+    margin: clamp(20px, 3vw, 30px) auto 0;
+    font-size: clamp(0.94rem, 1.4vw, 1.08rem);
+    line-height: 1.7;
     color: rgb(255 255 255 / 0.72);
 }
 
@@ -156,7 +157,7 @@ body {
     }
 
     .hero-content h1 {
-        max-width: 8ch;
-        font-size: clamp(4rem, 25vw, 8.5rem);
+        max-width: 9ch;
+        font-size: clamp(3.4rem, 19vw, 6.8rem);
     }
 }

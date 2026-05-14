@@ -26,10 +26,10 @@ if (canvas) {
     class Particle {
         constructor(index, count) {
             const angle = index * 2.399963 + Math.random() * 0.7;
-            const radius = Math.sqrt(index / count) * 190 + Math.random() * 24;
+            const radius = Math.sqrt(index / count) * 260 + Math.random() * 38;
 
             this.offsetX = Math.cos(angle) * radius;
-            this.offsetY = Math.sin(angle) * radius * 0.72;
+            this.offsetY = Math.sin(angle) * radius * 0.78;
             this.x = swarm.x + this.offsetX;
             this.y = swarm.y + this.offsetY;
             this.vx = 0;
@@ -38,7 +38,7 @@ if (canvas) {
             this.phase = Math.random() * Math.PI * 2;
             this.drag = 0.8 + Math.random() * 0.08;
             this.spring = 0.018 + Math.random() * 0.03;
-            this.delay = 0.52 + Math.random() * 0.58;
+            this.delay = 0.46 + Math.random() * 0.72;
             this.color = Math.random() < 0.88 ? `rgba(255, 255, 255, ${0.58 + Math.random() * 0.36})` : accents[index % accents.length];
         }
 
@@ -124,11 +124,11 @@ if (canvas) {
                 const b = particles[j];
                 const distance = Math.hypot(a.x - b.x, a.y - b.y);
 
-                if (distance > 72) {
+                if (distance > 84) {
                     continue;
                 }
 
-                ctx.strokeStyle = `rgba(255, 255, 255, ${0.12 * (1 - distance / 72)})`;
+                ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - distance / 84)})`;
                 ctx.beginPath();
                 ctx.moveTo(a.x, a.y);
                 ctx.lineTo(b.x, b.y);
@@ -137,11 +137,25 @@ if (canvas) {
         }
     };
 
+    const drawColorWash = () => {
+        const speedAlpha = Math.min(0.22, 0.045 + mouse.speed * 0.0018);
+        const radius = 210 + Math.min(mouse.speed * 1.3, 170);
+        const gradient = ctx.createRadialGradient(swarm.x, swarm.y, 0, swarm.x, swarm.y, radius);
+
+        gradient.addColorStop(0, `rgba(66, 133, 244, ${speedAlpha})`);
+        gradient.addColorStop(0.38, `rgba(52, 168, 83, ${speedAlpha * 0.42})`);
+        gradient.addColorStop(0.72, `rgba(251, 188, 4, ${speedAlpha * 0.22})`);
+        gradient.addColorStop(1, 'rgba(5, 5, 5, 0)');
+
+        ctx.globalCompositeOperation = 'screen';
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, width, height);
+    };
+
     const render = (time = 0) => {
         ctx.globalCompositeOperation = 'source-over';
-        ctx.fillStyle = 'rgba(5, 5, 5, 0.13)';
+        ctx.fillStyle = 'rgba(5, 5, 5, 0.18)';
         ctx.fillRect(0, 0, width, height);
-        ctx.globalCompositeOperation = 'lighter';
 
         if (!prefersReducedMotion) {
             const targetX = mouse.active ? mouse.x : width / 2;
@@ -152,6 +166,8 @@ if (canvas) {
             particles.forEach((particle) => particle.update(time));
         }
 
+        drawColorWash();
+        ctx.globalCompositeOperation = 'lighter';
         drawConnections();
         particles.forEach((particle) => particle.draw());
 

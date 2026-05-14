@@ -39,7 +39,9 @@ if (canvas) {
             this.drag = 0.8 + Math.random() * 0.08;
             this.spring = 0.018 + Math.random() * 0.03;
             this.delay = 0.46 + Math.random() * 0.72;
-            this.color = Math.random() < 0.88 ? `rgba(255, 255, 255, ${0.58 + Math.random() * 0.36})` : accents[index % accents.length];
+            this.isAccent = Math.random() >= 0.9;
+            this.alphaSeed = 0.72 + Math.random() * 0.28;
+            this.accent = accents[index % accents.length];
         }
 
         update(time) {
@@ -71,9 +73,14 @@ if (canvas) {
         }
 
         draw() {
-            ctx.fillStyle = this.color;
+            const distance = Math.hypot(this.x - swarm.x, this.y - swarm.y);
+            const glow = 1 - Math.min(distance / 285, 1);
+            const alpha = (0.14 + glow * 0.78) * this.alphaSeed;
+            const size = this.size * (0.62 + glow * 0.7);
+
+            ctx.fillStyle = this.isAccent ? this.accent.replace(/[\d.]+\)$/, `${Math.min(0.76, alpha)})`) : `rgba(255, 255, 255, ${alpha})`;
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
             ctx.fill();
         }
     }

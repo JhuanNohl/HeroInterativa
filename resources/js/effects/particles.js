@@ -3,15 +3,18 @@ const canvas = document.getElementById('particle-canvas');
 if (canvas) {
     const ctx = canvas.getContext('2d', { alpha: true });
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const colors = ['#4285f4', '#ea4335', '#fbbc04', '#34a853', '#ffffff'];
+    const accents = ['rgba(66, 133, 244, 0.85)', 'rgba(251, 188, 4, 0.82)', 'rgba(52, 168, 83, 0.78)'];
     const mouse = {
         x: window.innerWidth / 2,
         y: window.innerHeight / 2,
         px: window.innerWidth / 2,
         py: window.innerHeight / 2,
         active: false,
-        radius: 170,
         speed: 0,
+    };
+    const swarm = {
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2,
     };
 
     let width = 0;
@@ -21,43 +24,46 @@ if (canvas) {
     let rafId = null;
 
     class Particle {
-        constructor(x, y, color, size, column) {
-            this.homeX = x;
-            this.homeY = y;
-            this.x = x + (Math.random() - 0.5) * 18;
-            this.y = y + (Math.random() - 0.5) * 18;
+        constructor(index, count) {
+            const angle = index * 2.399963 + Math.random() * 0.7;
+            const radius = Math.sqrt(index / count) * 190 + Math.random() * 24;
+
+            this.offsetX = Math.cos(angle) * radius;
+            this.offsetY = Math.sin(angle) * radius * 0.72;
+            this.x = swarm.x + this.offsetX;
+            this.y = swarm.y + this.offsetY;
             this.vx = 0;
             this.vy = 0;
-            this.size = size;
-            this.color = color;
-            this.column = column;
+            this.size = 1.8 + Math.random() * 3.4;
             this.phase = Math.random() * Math.PI * 2;
-            this.drag = 0.86 + Math.random() * 0.04;
-            this.spring = 0.026 + Math.random() * 0.012;
+            this.drag = 0.8 + Math.random() * 0.08;
+            this.spring = 0.018 + Math.random() * 0.03;
+            this.delay = 0.52 + Math.random() * 0.58;
+            this.color = Math.random() < 0.88 ? `rgba(255, 255, 255, ${0.58 + Math.random() * 0.36})` : accents[index % accents.length];
         }
 
         update(time) {
+            const orbit = time * 0.00055;
+            const pulse = Math.sin(time * 0.0014 + this.phase) * 10;
+            const targetX = swarm.x + this.offsetX * this.delay + Math.cos(orbit + this.phase) * pulse;
+            const targetY = swarm.y + this.offsetY * this.delay + Math.sin(orbit + this.phase) * pulse;
             const dx = this.x - mouse.x;
             const dy = this.y - mouse.y;
             const distance = Math.hypot(dx, dy) || 1;
-            const reach = mouse.radius + mouse.speed * 0.18;
+            const reach = 110 + Math.min(mouse.speed * 0.24, 96);
 
             if (mouse.active && distance < reach) {
                 const force = (1 - distance / reach) ** 2;
                 const angle = Math.atan2(dy, dx);
-                const push = force * (7.5 + mouse.speed * 0.024);
 
-                this.vx += Math.cos(angle) * push;
-                this.vy += Math.sin(angle) * push;
-                this.vx += (mouse.x - mouse.px) * force * 0.035;
-                this.vy += (mouse.y - mouse.py) * force * 0.035;
+                this.vx += Math.cos(angle) * force * 3.2;
+                this.vy += Math.sin(angle) * force * 3.2;
+                this.vx += (mouse.x - mouse.px) * force * 0.022 * this.delay;
+                this.vy += (mouse.y - mouse.py) * force * 0.022 * this.delay;
             }
 
-            const floatY = Math.sin(time * 0.0012 + this.phase + this.column * 0.2) * 5;
-            const floatX = Math.cos(time * 0.001 + this.phase) * 2;
-
-            this.vx += (this.homeX + floatX - this.x) * this.spring;
-            this.vy += (this.homeY + floatY - this.y) * this.spring;
+            this.vx += (targetX - this.x) * this.spring;
+            this.vy += (targetY - this.y) * this.spring;
             this.vx *= this.drag;
             this.vy *= this.drag;
             this.x += this.vx;
@@ -86,38 +92,9 @@ if (canvas) {
     };
 
     const makeParticles = () => {
-        particles = [];
+        const count = width < 720 ? 96 : 170;
 
-        const columns = Math.max(30, Math.round(width / 26));
-        const rows = Math.max(18, Math.round(height / 28));
-        const gapX = width / columns;
-        const gapY = height / rows;
-        const centerX = width / 2;
-        const centerY = height / 2;
-        const fieldWidth = Math.min(width * 0.88, 980);
-        const fieldHeight = Math.min(height * 0.62, 500);
-        const startX = centerX - fieldWidth / 2;
-        const startY = centerY - fieldHeight / 2;
-
-        for (let row = 0; row <= rows; row += 1) {
-            for (let column = 0; column <= columns; column += 1) {
-                const u = column / columns;
-                const v = row / rows;
-                const x = startX + u * fieldWidth + (Math.random() - 0.5) * gapX * 0.22;
-                const y = startY + v * fieldHeight + (Math.random() - 0.5) * gapY * 0.22;
-                const halo = Math.hypot((x - centerX) / fieldWidth, (y - centerY) / fieldHeight);
-
-                if (halo > 0.68 && Math.random() < 0.5) {
-                    continue;
-                }
-
-                const color = colors[(column + row * 2) % colors.length];
-                const depth = 1 - Math.min(1, halo * 1.55);
-                const size = 1.2 + Math.random() * 1.8 + depth * 2.2;
-
-                particles.push(new Particle(x, y, color, size, column));
-            }
-        }
+        particles = Array.from({ length: count }, (_, index) => new Particle(index, count));
     };
 
     const resize = () => {
@@ -127,27 +104,31 @@ if (canvas) {
         canvas.width = Math.round(width * dpr);
         canvas.height = Math.round(height * dpr);
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        mouse.radius = Math.max(115, Math.min(220, width * 0.12));
+
+        mouse.x = width / 2;
+        mouse.y = height / 2;
+        mouse.px = mouse.x;
+        mouse.py = mouse.y;
+        swarm.x = mouse.x;
+        swarm.y = mouse.y;
         makeParticles();
     };
 
     const drawConnections = () => {
-        ctx.lineWidth = 0.7;
+        ctx.lineWidth = 0.65;
 
         for (let i = 0; i < particles.length; i += 1) {
             const a = particles[i];
 
-            for (let j = i + 1; j < Math.min(i + 8, particles.length); j += 1) {
+            for (let j = i + 1; j < Math.min(i + 5, particles.length); j += 1) {
                 const b = particles[j];
-                const dx = a.x - b.x;
-                const dy = a.y - b.y;
-                const distance = Math.hypot(dx, dy);
+                const distance = Math.hypot(a.x - b.x, a.y - b.y);
 
-                if (distance > 42) {
+                if (distance > 72) {
                     continue;
                 }
 
-                ctx.strokeStyle = `rgba(255, 255, 255, ${0.11 * (1 - distance / 42)})`;
+                ctx.strokeStyle = `rgba(255, 255, 255, ${0.12 * (1 - distance / 72)})`;
                 ctx.beginPath();
                 ctx.moveTo(a.x, a.y);
                 ctx.lineTo(b.x, b.y);
@@ -157,10 +138,17 @@ if (canvas) {
     };
 
     const render = (time = 0) => {
-        ctx.clearRect(0, 0, width, height);
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = 'rgba(5, 5, 5, 0.13)';
+        ctx.fillRect(0, 0, width, height);
         ctx.globalCompositeOperation = 'lighter';
 
         if (!prefersReducedMotion) {
+            const targetX = mouse.active ? mouse.x : width / 2;
+            const targetY = mouse.active ? mouse.y : height / 2;
+
+            swarm.x += (targetX - swarm.x) * 0.105;
+            swarm.y += (targetY - swarm.y) * 0.105;
             particles.forEach((particle) => particle.update(time));
         }
 
@@ -168,7 +156,7 @@ if (canvas) {
         particles.forEach((particle) => particle.draw());
 
         ctx.globalCompositeOperation = 'source-over';
-        mouse.speed *= 0.84;
+        mouse.speed *= 0.82;
         rafId = window.requestAnimationFrame(render);
     };
 

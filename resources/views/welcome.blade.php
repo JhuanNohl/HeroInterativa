@@ -14,10 +14,15 @@
             <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
             <section class="hero-content" aria-label="Demonstração interativa">
+                <nav class="hero-links" aria-label="Perfis sociais">
+                    <a href="https://github.com/JhuanNohl" target="_blank" rel="noreferrer">GitHub</a>
+                    <a href="https://www.linkedin.com/in/jhuan-nohl-9815a9210/" target="_blank" rel="noreferrer">LinkedIn</a>
+                </nav>
+
                 <p class="hero-kicker">Mouse reactive field</p>
-                <h1>Interactive Hero</h1>
+                <h1>Jhuan Nohl</h1>
                 <p class="hero-copy">
-                    Um campo de partículas com gravidade elástica.
+                    Um modelo de partículas luminosas que acompanha o mouse e reage ao conteúdo.
                 </p>
             </section>
         </main>

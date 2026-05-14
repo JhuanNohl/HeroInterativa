@@ -1,1 +1,1 @@
-//
+import './effects/particles';

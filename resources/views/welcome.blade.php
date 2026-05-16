@@ -22,9 +22,7 @@
                 <p class="hero-kicker">Fullstack Developer</p>
                 <h1>Jhuan Nohl</h1>
                 <p class="hero-copy">
-                    Desenvolvimento com foco em Clean Code, MVC e soluções desacopladas para interfaces e APIs mais simples de evoluir.
-                </p>
-
+                    Transformando aprendizado em aplicações reais, escaláveis e bem estruturadas.</p>
                 <div class="hero-actions" aria-label="Ações principais">
                     <a href="#github-stats">Ver estatísticas</a>
                     <a href="https://github.com/JhuanNohl?tab=repositories" target="_blank" rel="noreferrer">Repositórios</a>

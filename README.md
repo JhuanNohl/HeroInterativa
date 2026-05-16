@@ -1,58 +1,169 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Interactive Hero
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Uma landing page pessoal desenvolvida com Laravel, Vite, Tailwind CSS 4 e JavaScript puro. O projeto apresenta um hero interativo com canvas de particulas, links sociais e uma secao conectada ao GitHub para exibir dados publicos do perfil.
 
-## About Laravel
+## Preview
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A pagina inicial destaca o perfil de Jhuan Nohl com:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- animacao de particulas responsiva no fundo;
+- interacao visual pelo movimento do ponteiro;
+- links para GitHub e LinkedIn;
+- estatisticas publicas do GitHub carregadas pela API;
+- lista de tecnologias e ferramentas;
+- resumo das linguagens mais usadas nos repositorios;
+- grafico anual de contribuicoes.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Tecnologias
 
-## Learning Laravel
+- PHP 8.3
+- Laravel 13
+- Vite 8
+- Tailwind CSS 4
+- JavaScript
+- Blade
+- CSS moderno com canvas e layout responsivo
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Requisitos
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Antes de rodar o projeto, tenha instalado:
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- PHP 8.3 ou superior
+- Composer
+- Node.js
+- npm
 
-## Agentic Development
+## Como Rodar Localmente
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Clone o repositorio:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/JhuanNohl/interactive-hero.git
+cd interactive-hero
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Instale as dependencias do PHP:
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Instale as dependencias do Node:
 
-## Code of Conduct
+```bash
+npm install
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Crie o arquivo de ambiente:
 
-## Security Vulnerabilities
+```bash
+cp .env.example .env
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Gere a chave da aplicacao:
 
-## License
+```bash
+php artisan key:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Inicie o servidor Laravel:
+
+```bash
+php artisan serve
+```
+
+Em outro terminal, inicie o Vite:
+
+```bash
+npm run dev
+```
+
+Acesse:
+
+```text
+http://localhost:8000
+```
+
+## Scripts Disponiveis
+
+Rodar o ambiente de desenvolvimento do frontend:
+
+```bash
+npm run dev
+```
+
+Gerar build de producao:
+
+```bash
+npm run build
+```
+
+Rodar os testes do Laravel:
+
+```bash
+composer test
+```
+
+Rodar todos os processos de desenvolvimento configurados no Composer:
+
+```bash
+composer dev
+```
+
+## Estrutura Principal
+
+```text
+resources/
+  css/
+    app.css
+  js/
+    app.js
+    effects/
+      github-profile.js
+      particles.js
+  views/
+    welcome.blade.php
+routes/
+  web.php
+vite.config.js
+```
+
+## Integracao Com GitHub
+
+O arquivo `resources/js/effects/github-profile.js` consulta a API publica do GitHub usando o usuario configurado no atributo `data-github-profile` da secao principal:
+
+```html
+<section data-github-profile="JhuanNohl">
+```
+
+Com isso, a pagina carrega automaticamente:
+
+- nome e avatar do perfil;
+- quantidade de repositorios publicos;
+- seguidores;
+- total de estrelas;
+- total de forks;
+- linguagens mais frequentes nos repositorios.
+
+Caso a API esteja indisponivel, o projeto exibe dados locais de fallback.
+
+## Personalizacao
+
+Para adaptar o projeto para outro perfil, edite:
+
+- `resources/views/welcome.blade.php` para alterar textos, links e usuario do GitHub;
+- `resources/css/app.css` para ajustar layout, cores e responsividade;
+- `resources/js/effects/particles.js` para alterar a animacao do canvas;
+- `resources/js/effects/github-profile.js` para mudar a logica das estatisticas.
+
+## Build
+
+Para gerar os arquivos otimizados em `public/build`, execute:
+
+```bash
+npm run build
+```
+
+## Licenca
+
+Este projeto esta disponivel sob a licenca MIT.

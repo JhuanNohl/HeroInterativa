@@ -16,4 +16,19 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_vite_build_manifest_is_available(): void
+    {
+        $response = $this->get('/build/manifest.json');
+
+        $response->assertStatus(200);
+        $response->assertHeader('content-type', 'application/json');
+    }
+
+    public function test_build_asset_route_rejects_path_traversal(): void
+    {
+        $response = $this->get('/build/../.env');
+
+        $response->assertStatus(404);
+    }
 }

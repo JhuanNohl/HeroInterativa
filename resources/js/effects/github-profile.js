@@ -79,7 +79,6 @@ if (profile) {
             const forks = repos.reduce((sum, repo) => sum + repo.forks_count, 0);
 
             name.textContent = user.name || username;
-            bio.textContent = user.bio || bio.textContent;
             avatar.innerHTML = `<img src="${user.avatar_url}" alt="Avatar de ${user.name || username}">`;
             repoCount.textContent = `${number.format(repos.length)} repos mapeados`;
 

@@ -19,15 +19,15 @@
                     <a href="https://www.linkedin.com/in/jhuan-nohl-9815a9210/" target="_blank" rel="noreferrer">LinkedIn</a>
                 </nav>
 
-                <p class="hero-kicker">Laravel Developer</p>
+                <p class="hero-kicker">Fullstack Developer</p>
                 <h1>Jhuan Nohl</h1>
                 <p class="hero-copy">
-                    Um perfil em movimento que conecta stack, repositorios e sinais publicos do GitHub em uma experiencia interativa.
+                    Desenvolvimento com foco em Clean Code, MVC e soluções desacopladas para interfaces e APIs mais simples de evoluir.
                 </p>
 
-                <div class="hero-actions" aria-label="Acoes principais">
-                    <a href="#github-stats">Ver estatisticas</a>
-                    <a href="https://github.com/JhuanNohl?tab=repositories" target="_blank" rel="noreferrer">Repositorios</a>
+                <div class="hero-actions" aria-label="Ações principais">
+                    <a href="#github-stats">Ver estatísticas</a>
+                    <a href="https://github.com/JhuanNohl?tab=repositories" target="_blank" rel="noreferrer">Repositórios</a>
                 </div>
             </section>
         </main>
@@ -36,7 +36,6 @@
             <div class="section-shell">
                 <div class="section-heading">
                     <p>Perfil conectado</p>
-                    <h2>GitHub em foco</h2>
                 </div>
 
                 <div class="github-showcase">
@@ -45,13 +44,13 @@
                         <div>
                             <p class="profile-card__eyebrow">github.com/JhuanNohl</p>
                             <h3 data-profile-name>Jhuan Nohl</h3>
-                            <p data-profile-bio>Transformando logica, interface e dados em projetos com presenca propria.</p>
+                            <p data-profile-bio>Construindo aplicações com responsabilidades bem definidas, camadas desacopladas e código legível para manutenção contínua.</p>
                         </div>
                     </article>
 
-                    <div class="stats-grid" aria-label="Estatisticas publicas do GitHub">
+                    <div class="stats-grid" aria-label="Estatísticas públicas do GitHub">
                         <article class="stat-card">
-                            <span>Repositorios</span>
+                            <span>Repositórios</span>
                             <strong data-stat="repos">--</strong>
                         </article>
                         <article class="stat-card">
@@ -95,7 +94,7 @@
                 <div class="insight-grid">
                     <article class="language-card">
                         <div class="panel-title">
-                            <h3>Linguagens mais presentes</h3>
+                            <h3>Stacks mais utilizadas</h3>
                             <span data-repo-count>Carregando</span>
                         </div>
                         <div class="language-list" data-language-list>
@@ -119,12 +118,12 @@
 
                     <article class="activity-card">
                         <div class="panel-title">
-                            <h3>Contribuicoes</h3>
+                            <h3>Contribuições</h3>
                             <a href="https://github.com/JhuanNohl" target="_blank" rel="noreferrer">Abrir perfil</a>
                         </div>
                         <img
                             src="https://ghchart.rshah.org/4fc3f7/JhuanNohl"
-                            alt="Grafico anual de contribuicoes de JhuanNohl no GitHub"
+                            alt="Gráfico anual de contribuições de JhuanNohl no GitHub"
                             loading="lazy"
                         >
                     </article>

@@ -56,8 +56,8 @@ if (canvas) {
 
         draw() {
             const glow = this.proximity();
-            const alpha = 0.055 + glow * 0.78;
-            const size = this.size + glow * 3.2;
+            const alpha = 0.07 + glow * 0.9;
+            const size = this.size + glow * 4.2;
 
             ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
             ctx.beginPath();
@@ -77,13 +77,13 @@ if (canvas) {
         mouse.x = x;
         mouse.y = y;
         mouse.active = true;
-        mouse.energy = Math.min(1, 0.45 + mouse.speed / 90);
+        mouse.energy = Math.min(1, 0.62 + mouse.speed / 76);
     };
 
     const makeParticles = () => {
         const area = width * height;
-        const density = width < 720 ? 8800 : 7600;
-        const count = Math.min(280, Math.max(95, Math.round(area / density)));
+        const density = width < 720 ? 6200 : 5200;
+        const count = Math.min(420, Math.max(135, Math.round(area / density)));
 
         particles = Array.from({ length: count }, (_, index) => new Particle(index));
     };
@@ -109,7 +109,7 @@ if (canvas) {
             .map((particle) => ({ particle, glow: particle.proximity() }))
             .filter(({ glow }) => glow > 0.02)
             .sort((a, b) => b.glow - a.glow)
-            .slice(0, 34);
+            .slice(0, 48);
 
         for (let i = 0; i < nearby.length; i += 1) {
             const a = nearby[i].particle;
@@ -125,8 +125,8 @@ if (canvas) {
 
                 const intensity = (1 - distance / 126) * Math.min(aGlow, nearby[j].glow);
 
-                ctx.strokeStyle = `rgba(255, 255, 255, ${0.18 * intensity})`;
-                ctx.lineWidth = 0.65 + intensity * 0.55;
+                ctx.strokeStyle = `rgba(255, 255, 255, ${0.28 * intensity})`;
+                ctx.lineWidth = 0.75 + intensity * 0.85;
                 ctx.beginPath();
                 ctx.moveTo(a.x, a.y);
                 ctx.lineTo(b.x, b.y);
@@ -146,7 +146,7 @@ if (canvas) {
                 continue;
             }
 
-            const opacity = Math.min(a.glow, b.glow, c.glow) * 0.08;
+            const opacity = Math.min(a.glow, b.glow, c.glow) * 0.13;
 
             ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
             ctx.beginPath();
@@ -170,7 +170,7 @@ if (canvas) {
 
         ctx.globalCompositeOperation = 'source-over';
         mouse.speed *= 0.82;
-        mouse.energy *= mouse.active ? 0.94 : 0.9;
+        mouse.energy *= mouse.active ? 0.96 : 0.9;
         rafId = window.requestAnimationFrame(render);
     };
 

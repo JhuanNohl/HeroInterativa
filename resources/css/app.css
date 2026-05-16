@@ -60,16 +60,6 @@ a {
     mask-image: radial-gradient(circle at center, black, transparent 78%);
 }
 
-.hero::after {
-    position: absolute;
-    inset: auto 0 0;
-    z-index: 1;
-    height: 30vh;
-    pointer-events: none;
-    content: '';
-    background: linear-gradient(180deg, transparent, #050505 72%);
-}
-
 #particle-canvas {
     position: fixed;
     inset: 0;
@@ -201,6 +191,8 @@ a {
     font-size: clamp(0.94rem, 1.4vw, 1.08rem);
     line-height: 1.7;
     color: rgb(255 255 255 / 0.72);
+    text-align: center;
+    text-wrap: balance;
 }
 
 .profile-section {
@@ -234,6 +226,7 @@ a {
     display: grid;
     gap: 8px;
     margin-bottom: 24px;
+    text-align: center;
 }
 
 .section-heading p,
@@ -323,6 +316,8 @@ a {
     margin: 12px 0 0;
     color: rgb(255 255 255 / 0.68);
     line-height: 1.7;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .stats-grid {
@@ -336,6 +331,8 @@ a {
     min-height: 132px;
     padding: 18px;
     align-content: space-between;
+    justify-items: center;
+    text-align: center;
     border: 1px solid rgb(255 255 255 / 0.12);
     border-radius: 8px;
     background: rgb(0 0 0 / 0.28);
@@ -359,6 +356,11 @@ a {
 .activity-card {
     margin-top: 18px;
     padding: 18px;
+}
+
+.toolkit-panel .panel-title {
+    justify-content: center;
+    text-align: center;
 }
 
 .panel-title {
@@ -389,24 +391,29 @@ a {
 
 .tech-grid {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-wrap: nowrap;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+    scrollbar-width: thin;
 }
 
 .tech-badge {
     display: inline-grid;
-    min-height: 30px;
-    padding: 8px 12px;
-    font-size: 0.72rem;
+    min-height: 24px;
+    padding: 6px 8px;
+    font-size: 0.58rem;
     font-weight: 850;
     line-height: 1;
     color: #fff;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     place-items: center;
     border: 1px solid rgb(255 255 255 / 0.1);
     border-radius: 4px;
     box-shadow: 0 10px 26px rgb(0 0 0 / 0.22);
+    white-space: nowrap;
 }
 
 .tech-php { background: #6e62b6; }

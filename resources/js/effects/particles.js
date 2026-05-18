@@ -15,6 +15,7 @@ if (canvas) {
 
     let width = 0;
     let height = 0;
+    let viewportHeight = 0;
     let dpr = 1;
     let particles = [];
     let rafId = null;
@@ -25,10 +26,9 @@ if (canvas) {
             this.y = Math.random() * height;
             this.baseX = this.x;
             this.baseY = this.y;
-            this.size = 0.55 + Math.random() * 1.15;
+            this.size = 0.9 + Math.random() * 1.8;
             this.phase = Math.random() * Math.PI * 2;
             this.depth = 0.35 + Math.random() * 0.65;
-            this.glass = index % 17 === 0;
             this.index = index;
         }
 
@@ -37,8 +37,8 @@ if (canvas) {
                 return;
             }
 
-            const drift = Math.sin(time * 0.0002 + this.phase) * 1.55 * this.depth;
-            const counterDrift = Math.cos(time * 0.00016 + this.phase) * 1.25 * this.depth;
+            const drift = Math.sin(time * 0.00024 + this.phase) * 2.2 * this.depth;
+            const counterDrift = Math.cos(time * 0.00018 + this.phase) * 1.8 * this.depth;
 
             this.x = this.baseX + drift;
             this.y = this.baseY + counterDrift;
@@ -50,37 +50,26 @@ if (canvas) {
             }
 
             const distance = Math.hypot(this.x - mouse.x, this.y - mouse.y);
-            const radius = 142 + Math.min(mouse.speed * 0.1, 58);
+            const radius = 180 + Math.min(mouse.speed * 0.2, 110);
 
-            return Math.max(0, 1 - distance / radius) * mouse.energy * 0.72;
+            return Math.max(0, 1 - distance / radius) * mouse.energy;
         }
 
         draw() {
             const glow = this.proximity();
-            const alpha = (this.glass ? 0.12 : 0.065) + glow * 0.44;
-            const size = this.size + glow * 2.4 + (this.glass ? 1.25 : 0);
+            const alpha = 0.045 + glow * 1.02;
+            const size = this.size + glow * 4.6;
 
-            ctx.fillStyle = this.glass
-                ? `rgba(79, 195, 247, ${alpha})`
-                : `rgba(255, 255, 255, ${alpha})`;
+            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
             ctx.beginPath();
             ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
             ctx.fill();
-
-            if (this.glass && glow > 0.08) {
-                ctx.strokeStyle = `rgba(255, 255, 255, ${0.16 + glow * 0.22})`;
-                ctx.lineWidth = 0.8;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, size + 3.5, 0, Math.PI * 2);
-                ctx.stroke();
-            }
         }
     }
 
     const setPointer = (event) => {
-        const rect = canvas.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
+        const x = event.clientX;
+        const y = event.clientY + window.scrollY;
 
         mouse.speed = Math.hypot(x - mouse.x, y - mouse.y);
         mouse.px = mouse.x;
@@ -88,13 +77,13 @@ if (canvas) {
         mouse.x = x;
         mouse.y = y;
         mouse.active = true;
-        mouse.energy = Math.min(0.72, 0.34 + mouse.speed / 120);
+        mouse.energy = Math.min(1, 0.68 + mouse.speed / 70);
     };
 
     const makeParticles = () => {
         const area = width * height;
-        const density = width < 720 ? 3600 : 3000;
-        const count = Math.min(760, Math.max(220, Math.round(area / density)));
+        const density = width < 720 ? 5400 : 4600;
+        const count = Math.min(980, Math.max(240, Math.round(area / density)));
 
         particles = Array.from({ length: count }, (_, index) => new Particle(index));
     };
@@ -102,13 +91,19 @@ if (canvas) {
     const resize = () => {
         dpr = Math.min(window.devicePixelRatio || 1, 2);
         width = canvas.clientWidth;
-        height = canvas.clientHeight;
+        viewportHeight = window.innerHeight;
+        height = Math.max(
+            viewportHeight,
+            document.documentElement.scrollHeight,
+            document.body.scrollHeight,
+        );
+        canvas.style.height = `${height}px`;
         canvas.width = Math.round(width * dpr);
         canvas.height = Math.round(height * dpr);
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
         mouse.x = width / 2;
-        mouse.y = height / 2;
+        mouse.y = window.scrollY + viewportHeight / 2;
         mouse.px = mouse.x;
         mouse.py = mouse.y;
         mouse.energy = 0;
@@ -116,39 +111,11 @@ if (canvas) {
     };
 
     const drawConnections = () => {
-        let ambientLines = 0;
-        const ambientLimit = width < 720 ? 180 : 320;
-        const ambientDistance = width < 720 ? 66 : 82;
-
-        for (let i = 0; i < particles.length && ambientLines < ambientLimit; i += 1) {
-            const a = particles[i];
-
-            for (let j = i + 1; j < particles.length && ambientLines < ambientLimit; j += 1) {
-                const b = particles[j];
-                const distance = Math.hypot(a.x - b.x, a.y - b.y);
-
-                if (distance > ambientDistance) {
-                    continue;
-                }
-
-                const proximity = 1 - distance / ambientDistance;
-                const glassBoost = a.glass || b.glass ? 0.026 : 0;
-
-                ctx.strokeStyle = `rgba(201, 241, 255, ${0.018 + proximity * 0.045 + glassBoost})`;
-                ctx.lineWidth = 0.45 + proximity * 0.35;
-                ctx.beginPath();
-                ctx.moveTo(a.x, a.y);
-                ctx.lineTo(b.x, b.y);
-                ctx.stroke();
-                ambientLines += 1;
-            }
-        }
-
         const nearby = particles
             .map((particle) => ({ particle, glow: particle.proximity() }))
-            .filter(({ glow }) => glow > 0.025)
+            .filter(({ glow }) => glow > 0.02)
             .sort((a, b) => b.glow - a.glow)
-            .slice(0, 62);
+            .slice(0, 58);
 
         for (let i = 0; i < nearby.length; i += 1) {
             const a = nearby[i].particle;
@@ -158,14 +125,14 @@ if (canvas) {
                 const b = nearby[j].particle;
                 const distance = Math.hypot(a.x - b.x, a.y - b.y);
 
-                if (distance > 118) {
+                if (distance > 132) {
                     continue;
                 }
 
-                const intensity = (1 - distance / 118) * Math.min(aGlow, nearby[j].glow);
+                const intensity = (1 - distance / 132) * Math.min(aGlow, nearby[j].glow);
 
-                ctx.strokeStyle = `rgba(201, 241, 255, ${0.18 * intensity})`;
-                ctx.lineWidth = 0.55 + intensity * 0.55;
+                ctx.strokeStyle = `rgba(255, 255, 255, ${0.34 * intensity})`;
+                ctx.lineWidth = 0.75 + intensity * 0.95;
                 ctx.beginPath();
                 ctx.moveTo(a.x, a.y);
                 ctx.lineTo(b.x, b.y);
@@ -181,13 +148,13 @@ if (canvas) {
             const bc = Math.hypot(b.particle.x - c.particle.x, b.particle.y - c.particle.y);
             const ca = Math.hypot(c.particle.x - a.particle.x, c.particle.y - a.particle.y);
 
-            if (ab > 132 || bc > 132 || ca > 132) {
+            if (ab > 152 || bc > 152 || ca > 152) {
                 continue;
             }
 
-            const opacity = Math.min(a.glow, b.glow, c.glow) * 0.065;
+            const opacity = Math.min(a.glow, b.glow, c.glow) * 0.13;
 
-            ctx.fillStyle = `rgba(79, 195, 247, ${opacity})`;
+            ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
             ctx.beginPath();
             ctx.moveTo(a.particle.x, a.particle.y);
             ctx.lineTo(b.particle.x, b.particle.y);
@@ -209,11 +176,22 @@ if (canvas) {
 
         ctx.globalCompositeOperation = 'source-over';
         mouse.speed *= 0.82;
-        mouse.energy *= mouse.active ? 0.94 : 0.88;
+        mouse.energy *= mouse.active ? 0.965 : 0.9;
         rafId = window.requestAnimationFrame(render);
     };
 
     window.addEventListener('resize', resize);
+    window.addEventListener('scroll', () => {
+        const nextHeight = Math.max(
+            window.innerHeight,
+            document.documentElement.scrollHeight,
+            document.body.scrollHeight,
+        );
+
+        if (Math.abs(nextHeight - height) > 80) {
+            resize();
+        }
+    }, { passive: true });
     window.addEventListener('pointermove', setPointer, { passive: true });
     window.addEventListener('pointerdown', setPointer, { passive: true });
     window.addEventListener('pointerleave', () => {

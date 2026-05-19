@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Stack+Sans+Notch:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@400;500;600;700;800&family=Unica+One&display=swap');
 @import 'tailwindcss';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -10,7 +10,7 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
     --font-title: 'Stack Sans Notch', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
-    --font-display: 'Monoton', 'Stack Sans Notch', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Unica One', 'Stack Sans Notch', ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -41,6 +41,8 @@ body {
 }
 
 body {
+    min-width: 320px;
+    overflow-x: hidden;
     background:
         radial-gradient(circle at 18% 18%, rgb(79 195 247 / 0.055), transparent 26rem),
         radial-gradient(circle at 82% 12%, rgb(255 255 255 / 0.035), transparent 22rem),
@@ -84,7 +86,7 @@ body::before {
     grid-template-columns: minmax(280px, 0.84fr) minmax(0, 1.16fr);
     gap: clamp(36px, 7vw, 92px);
     width: min(1180px, calc(100% - 48px));
-    min-height: 100svh;
+    min-height: 100dvh;
     margin: 0 auto;
 }
 
@@ -94,8 +96,15 @@ body::before {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100svh;
-    padding: clamp(56px, 8vh, 92px) 0;
+    height: 100dvh;
+    max-height: 100dvh;
+    padding: clamp(42px, 7vh, 76px) 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.portfolio-rail::-webkit-scrollbar {
+    display: none;
 }
 
 .intro-block {
@@ -119,7 +128,7 @@ body::before {
     max-width: 10ch;
     margin: 14px 0 16px;
     font-family: var(--font-display);
-    font-size: clamp(3.65rem, 7.25vw, 6.15rem);
+    font-size: clamp(3.35rem, 6.4vw, 5.35rem);
     font-weight: 400;
     color: #f4f7fb;
     line-height: 0.98;
@@ -133,7 +142,7 @@ body::before {
 .intro-lead {
     max-width: 520px;
     margin: 0;
-    font-size: clamp(1.22rem, 2vw, 1.52rem);
+    font-size: clamp(1.12rem, 1.65vw, 1.36rem);
     font-weight: 700;
     line-height: 1.35;
     color: rgb(255 255 255 / 0.88);
@@ -152,7 +161,7 @@ body::before {
     display: grid;
     gap: 14px;
     width: max-content;
-    margin-top: 48px;
+    margin-top: clamp(34px, 7vh, 58px);
 }
 
 .section-nav a {
@@ -197,7 +206,7 @@ body::before {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 42px;
+    margin-top: clamp(30px, 6vh, 54px);
 }
 
 .social-links a,
@@ -237,8 +246,8 @@ body::before {
 
 .portfolio-main {
     display: grid;
-    gap: clamp(68px, 11vw, 132px);
-    padding: clamp(56px, 8vh, 92px) 0 92px;
+    gap: clamp(58px, 8vw, 104px);
+    padding: clamp(42px, 7vh, 76px) 0 clamp(96px, 14vh, 148px);
 }
 
 .content-section {
@@ -246,20 +255,20 @@ body::before {
 }
 
 .content-section > h2 {
-    max-width: 720px;
+    max-width: 660px;
     margin: 12px 0 24px;
     font-family: var(--font-title);
-    font-size: clamp(1.55rem, 3.35vw, 2.55rem);
+    font-size: clamp(1.34rem, 2.45vw, 2.05rem);
     font-weight: 700;
-    line-height: 1.14;
+    line-height: 1.18;
     letter-spacing: 0;
     text-wrap: balance;
 }
 
 .prose-stack {
     display: grid;
-    gap: 18px;
-    max-width: 70ch;
+    gap: 16px;
+    max-width: 66ch;
 }
 
 .prose-stack p,
@@ -268,12 +277,14 @@ body::before {
 .profile-card p:last-child {
     margin: 0;
     color: var(--muted);
-    font-size: 1rem;
-    line-height: 1.78;
+    font-size: 0.97rem;
+    line-height: 1.72;
     overflow-wrap: anywhere;
 }
 
 .prose-stack p,
+.timeline-item p,
+.project-card > p,
 .profile-card p:last-child {
     text-align: justify;
     text-justify: inter-word;
@@ -341,7 +352,7 @@ body::before {
 
 .timeline-item h3,
 .project-card h3 {
-    font-size: 1.08rem;
+    font-size: 1rem;
     font-weight: 850;
     color: rgb(255 255 255 / 0.92);
 }
@@ -505,7 +516,7 @@ body::before {
 
 .profile-card h3 {
     margin-top: 8px;
-    font-size: clamp(1.55rem, 3vw, 2.35rem);
+    font-size: clamp(1.35rem, 2.35vw, 1.95rem);
     font-weight: 800;
 }
 
@@ -617,8 +628,8 @@ body::before {
     .portfolio-rail {
         position: relative;
         height: auto;
-        min-height: 100svh;
-        padding: 52px 0 36px;
+        min-height: auto;
+        padding: 48px 0 34px;
     }
 
     .section-nav {
@@ -630,8 +641,8 @@ body::before {
     }
 
     .intro-block h1 {
-        max-width: 8ch;
-        font-size: clamp(3.45rem, 14vw, 5.55rem);
+        max-width: 9ch;
+        font-size: clamp(3.15rem, 12vw, 4.85rem);
     }
 }
 
@@ -650,12 +661,13 @@ body::before {
     }
 
     .portfolio-main {
-        gap: 72px;
-        padding-bottom: 64px;
+        gap: 64px;
+        padding-bottom: 88px;
     }
 
     .content-section > h2 {
-        font-size: clamp(1.38rem, 8vw, 2.18rem);
+        font-size: clamp(1.28rem, 6.6vw, 1.9rem);
+        text-align: left;
     }
 
     .timeline-item,
@@ -696,7 +708,7 @@ body::before {
 
 @media (max-width: 460px) {
     .intro-block h1 {
-        font-size: clamp(3rem, 19vw, 4.65rem);
+        font-size: clamp(2.85rem, 16vw, 4.2rem);
     }
 
     .stats-grid {

@@ -1,9 +1,3 @@
-<div align="center">
-    
-  ![Descrição do GIF](https://res.cloudinary.com/dgztg4ry9/image/upload/v1778892626/Hero_wiaqgs.gif)
-  
-</div>
-
 # Interactive Hero
 
 Uma landing page pessoal desenvolvida com Laravel, Vite, Tailwind CSS 4 e JavaScript puro. O projeto apresenta um hero interativo com canvas de particulas, links sociais e uma secao conectada ao GitHub para exibir dados publicos do perfil.
@@ -176,6 +170,6 @@ Este projeto esta disponivel sob a licenca MIT.
 
 <div align="center">
     
-  ![Descrição do GIF](https://res.cloudinary.com/dgztg4ry9/image/upload/v1778892693/Hero2_fnhapl.gif)
+  ![Descrição do GIF](https://res.cloudinary.com/dgztg4ry9/image/upload/v1779306448/PortGif_t1hncr.gif)
   
 </div>

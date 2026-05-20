@@ -80,15 +80,13 @@
                         <span class="tech-badge tech-laravel">Laravel</span>
                         <span class="tech-badge tech-js">JavaScript</span>
                         <span class="tech-badge tech-vite">Vite</span>
-                        <span class="tech-badge tech-node">Node.js</span>
+                        <span class="tech-badge tech-php">Blade</span>
                         <span class="tech-badge tech-css">CSS</span>
                         <span class="tech-badge tech-bootstrap">Bootstrap</span>
                         <span class="tech-badge tech-html">HTML5</span>
                         <span class="tech-badge tech-git">Git</span>
                         <span class="tech-badge tech-github">GitHub</span>
                         <span class="tech-badge tech-postgres">PostgreSQL</span>
-                        <span class="tech-badge tech-mysql">MySQL</span>
-                        <span class="tech-badge tech-sqlite">SQLite</span>
                         <span class="tech-badge tech-linux">Linux</span>
                     </div>
                 </div>

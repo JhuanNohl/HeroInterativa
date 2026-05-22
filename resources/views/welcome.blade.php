@@ -17,15 +17,10 @@
     <div class="portfolio-shell" data-particle-hero>
         <header class="portfolio-rail" aria-label="Apresentação de Jhuan Nohl">
             <div class="intro-block">
-                <p class="intro-kicker">Fullstack Developer</p>
+                <p class="intro-kicker">Full Stack Developer</p>
                 <h1>Jhuan Nohl</h1>
-                <p class="intro-lead">
-                    Desenvolvimento com foco em arquitetura, qualidade de código e soluções escaláveis.
-                </p>
                 <p class="intro-copy">
-                    Atuo na construção de aplicações full stack, utilizando boas práticas como Clean Code,
-                    MVC, separação de responsabilidades e código desacoplado para criar soluções mais
-                    organizadas, manuteníveis e preparadas para evolução.
+                    Belo Horizonte | MG
                 </p>
             </div>
 
@@ -48,7 +43,7 @@
         <main class="portfolio-main">
             <section class="content-section" id="sobre" aria-labelledby="sobre-title">
                 <p class="section-label">Sobre</p>
-                <h2 id="sobre-title">Desenvolvimento Full Stack orientado a arquitetura, manutenção e entrega real.</h2>
+                <h2 id="sobre-title">Desenvolvedor Full Stack.</h2>
 
                 <div class="prose-stack">
                     <p>
@@ -94,12 +89,11 @@
 
             <section class="content-section" id="experiencia" aria-labelledby="experiencia-title">
                 <p class="section-label">Experiência</p>
-                <h2 id="experiencia-title">Experiência prática em aplicações estruturadas, integrações e evolução de
-                    produto.</h2>
+                <h2 id="experiencia-title">Trajetória Técnica.</h2>
 
                 <div class="timeline-list">
                     <article class="timeline-item">
-                        <span>2026</span>
+                        <span>Finalizado</span>
                         <div>
                             <h3>Aplicações Full Stack com Laravel</h3>
                             <p>
@@ -112,13 +106,14 @@
                                 <li>Laravel</li>
                                 <li>Blade</li>
                                 <li>Vite</li>
+                                <li>MVC</li>
                                 <li>Vercel</li>
                             </ul>
                         </div>
                     </article>
 
                     <article class="timeline-item">
-                        <span>Atual</span>
+                        <span>Em Andamento</span>
                         <div>
                             <h3>Integração com APIs e dados dinâmicos</h3>
                             <p>
@@ -139,49 +134,91 @@
 
             <section class="content-section" id="projetos" aria-labelledby="projetos-title">
                 <p class="section-label">Projetos</p>
-                <h2 id="projetos-title">Projetos com propósito, estrutura técnica e aplicação prática.</h2>
+                <h2 id="projetos-title">1° Projeto.</h2>
 
                 <div class="project-list">
                     <article class="project-card">
                         <div>
-                            <p>Projeto em destaque</p>
-                            <h3>Hero Interativa</h3>
+                            <p>Projeto Front-end</p>
+                            <h3>UseNohl - E-commerce</h3>
                         </div>
                         <p>
-                            Landing page responsiva desenvolvida com Laravel, Blade, Vite e JavaScript,
-                            integrando animações em Canvas, consumo de dados públicos do GitHub e deploy
-                            em ambiente moderno. O projeto valoriza performance, organização visual e
-                            separação entre estrutura, estilo e comportamento.
+                            UseNohl é uma experiência de e-commerce front-end para uma loja de roupas e acessórios,
+                            criada com foco em navegação simples, identidade visual consistente e recursos
+                            interativos que simulam uma jornada real de compra.
+                            </br>
+                            O projeto foi desenvolvido como primeiro projeto front-end após a conclusão
+                            de estudos em HTML, CSS e JavaScript, reunindo catálogo de produtos,
+                            carrinho, autenticação local, perfil de usuário e pré-checkout em uma aplicação estática..
                         </p>
                         <ul class="tag-list" aria-label="Tecnologias usadas">
-                            <li>Laravel</li>
-                            <li>Blade</li>
+                            <li>HTML5</li>
+                            <li>CSS</li>
+                            <li>Bootstrap</li>
                             <li>JavaScript</li>
-                            <li>Canvas API</li>
-                            <li>Vite</li>
+                            <li>WebStorageAPI</li>
                         </ul>
-                        <a href="https://github.com/JhuanNohl?tab=repositories" target="_blank" rel="noreferrer">Ver
-                            repositórios</a>
+                        <a href="https://github.com/JhuanNohl/UseNohl" target="_blank" rel="noreferrer">Ver
+                            repositório</a>
+                        <img src="https://res.cloudinary.com/dgztg4ry9/image/upload/v1779469478/UseNohl_mfohc2.gif"
+                            alt="Descrição da imagem" />
                     </article>
+                </div>
 
+                <h2>2° Projeto.</h2>
+
+                <div class="project-list">
                     <article class="project-card">
                         <div>
-                            <p>Integração com API</p>
-                            <h3>Perfil GitHub conectado</h3>
+                            <p>Projeto FullStack</p>
+                            <h3>ZKTeco - Intranet Corporativa</h3>
                         </div>
                         <p>
-                            Componente dinâmico que transforma dados públicos do GitHub em indicadores
-                            visuais, exibindo repositórios, linguagens, métricas e atividade do perfil.
-                            A implementação reforça práticas de consumo de API REST, tratamento de dados
-                            e construção de interfaces orientadas a informação.
+                            Sistema de intranet corporativa desenvolvido para centralizar comunicação interna,
+                            documentos, treinamentos,
+                            informações por setor e fluxos operacionais da ZKTeco Brasil.</br>
+                            O projeto foi construído em Laravel, com foco em organização por departamentos, controle de
+                            permissões
+                            e uma experiência simples para uso diário pelos colaboradores.
                         </p>
                         <ul class="tag-list" aria-label="Tecnologias usadas">
-                            <li>API REST</li>
-                            <li>Fetch</li>
+                            <li>PHP 8.3+</li>
+                            <li>Laravel 13</li>
+                            <li>Blade</li>
+                            <li>CSS</li>
                             <li>JavaScript</li>
-                            <li>Dados dinâmicos</li>
+                            <li>PostgreSQL</li>
                         </ul>
-                        <a href="#github-stats">Ver métricas</a>
+                        <a href="https://github.com/JhuanNohl" target="_blank" rel="noreferrer">Repositório Privado</a>
+                        <img src="https://res.cloudinary.com/dgztg4ry9/image/upload/v1779469903/Intranet_upm8ut.gif"
+                            alt="Descrição da imagem" />
+                    </article>
+                </div>
+
+                <h2>3° Projeto.</h2>
+
+                <div class="project-list">
+                    <article class="project-card">
+                        <div>
+                            <p>Projeto FullStack</p>
+                            <h3>Cliento - CRM</h3>
+                        </div>
+                        <p>
+                            Aplicação de CRM enxuta criada com Laravel, Blade, Tailwind CSS e PostgreSQL.
+                            O objetivo é demonstrar um fluxo comercial simples:</br>
+                            Empresas, contatos, oportunidades, atividades e um dashboard autenticado.
+                        </p>
+                        <ul class="tag-list" aria-label="Tecnologias usadas">
+                            <li>PHP 8.3+</li>
+                            <li>Laravel 13</li>
+                            <li>Blade</li>
+                            <li>Tailwind CSS</li>
+                            <li>Vite</li>
+                        </ul>
+                        <a href="https://github.com/JhuanNohl/Cliento" target="_blank" rel="noreferrer">Ver
+                            repositório</a>
+                        <img src="https://res.cloudinary.com/dgztg4ry9/image/upload/v1779475962/Cliento_ihavwv.gif"
+                            alt="Descrição da imagem" />
                     </article>
                 </div>
             </section>
@@ -189,7 +226,7 @@
             <section class="content-section profile-section" id="github-stats" data-github-profile="JhuanNohl"
                 aria-labelledby="github-title">
                 <p class="section-label">Perfil conectado</p>
-                <h2 id="github-title">Indicadores públicos que refletem prática, evolução e consistência.</h2>
+                <h2 id="github-title">Indicadores.</h2>
 
                 <div class="github-showcase">
                     <article class="profile-card" aria-label="Resumo do perfil GitHub">
@@ -197,11 +234,6 @@
                         <div>
                             <p class="profile-card__eyebrow">github.com/JhuanNohl</p>
                             <h3 data-profile-name>Jhuan Nohl</h3>
-                            <p data-profile-bio>
-                                Desenvolvendo aplicações com foco em Clean Code, arquitetura MVC,
-                                responsabilidades bem definidas, camadas desacopladas e código preparado
-                                para manutenção contínua.
-                            </p>
                         </div>
                     </article>
 

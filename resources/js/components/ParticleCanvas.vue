@@ -1,6 +1,21 @@
-const canvas = document.getElementById('particle-canvas');
+<template>
+    <canvas ref="canvasEl" id="particle-canvas" aria-hidden="true"></canvas>
+</template>
 
-if (canvas) {
+<script setup>
+import { onMounted, onBeforeUnmount, ref } from 'vue';
+
+const canvasEl = ref(null);
+
+let cleanup = () => {};
+
+onMounted(() => {
+    const canvas = canvasEl.value;
+
+    if (!canvas) {
+        return;
+    }
+
     const ctx = canvas.getContext('2d', { alpha: true });
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const mouse = {
@@ -180,8 +195,7 @@ if (canvas) {
         rafId = window.requestAnimationFrame(render);
     };
 
-    window.addEventListener('resize', resize);
-    window.addEventListener('scroll', () => {
+    const onScroll = () => {
         const nextHeight = Math.max(
             window.innerHeight,
             document.documentElement.scrollHeight,
@@ -191,19 +205,35 @@ if (canvas) {
         if (Math.abs(nextHeight - height) > 80) {
             resize();
         }
-    }, { passive: true });
+    };
+
+    const onPointerLeave = () => {
+        mouse.active = false;
+    };
+
+    window.addEventListener('resize', resize);
+    window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('pointermove', setPointer, { passive: true });
     window.addEventListener('pointerdown', setPointer, { passive: true });
-    window.addEventListener('pointerleave', () => {
-        mouse.active = false;
-    });
+    window.addEventListener('pointerleave', onPointerLeave);
 
     resize();
     render();
 
-    window.addEventListener('beforeunload', () => {
+    cleanup = () => {
         if (rafId) {
             window.cancelAnimationFrame(rafId);
         }
-    });
-}
+
+        window.removeEventListener('resize', resize);
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('pointermove', setPointer);
+        window.removeEventListener('pointerdown', setPointer);
+        window.removeEventListener('pointerleave', onPointerLeave);
+    };
+});
+
+onBeforeUnmount(() => {
+    cleanup();
+});
+</script>

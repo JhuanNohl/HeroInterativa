@@ -5,21 +5,22 @@
 
         <div class="prose-stack">
             <p>
-                Sou desenvolvedor Full Stack com foco na criação de aplicações modernas,
-                organizadas e sustentáveis. Trabalho com PHP, Laravel, JavaScript, Blade,
-                Tailwind CSS e bancos relacionais, desenvolvendo soluções que conectam
-                interface, regras de negócio, autenticação, APIs e persistência de dados.
+                Sou desenvolvedor Full Stack com foco na 
+                construção de aplicações web corporativas utilizando 
+                PHP, Laravel, Vue.js e bancos de dados relacionais.
             </p>
             <p>
-                Busco constatemente aplicar boas práticas de desenvolvimento, como Clean Code, arquitetura MVC,
-                validações centralizadas, componentização, separação de camadas e código desacoplado.
-                Meu objetivo é construir sistemas claros, seguros e fáceis de manter, reduzindo
-                complexidade e facilitando a evolução contínua do produto.
+                Atuo desde a criação das interfaces e componentes até a implementação de 
+                regras de negócio, autenticação, permissões, APIs, persistência de dados, testes e deploy. 
             </p>
             <p>
-                Minha experiência com infraestrutura complementa minha visão técnica, permitindo
-                pensar em aplicações com maior atenção a ambiente, performance, estabilidade,
-                organização e resolução de problemas em cenários reais.
+                Em meus projetos, busco aplicar arquitetura MVC, componentização, validações centralizadas, 
+                separação de responsabilidades e código preparado para manutenção e evolução.
+            </p>
+            <p>
+                Minha experiência anterior com infraestrutura complementa essa atuação, 
+                permitindo desenvolver soluções com maior atenção ao ambiente de 
+                produção, segurança, desempenho, estabilidade e resolução de problemas reais.
             </p>
         </div>
 

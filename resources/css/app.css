@@ -108,6 +108,41 @@ body::before {
     display: none;
 }
 
+@keyframes reveal-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.portfolio-rail > *,
+.portfolio-main > .content-section {
+    opacity: 0;
+    animation: reveal-in 0.6s ease-out forwards;
+}
+
+.portfolio-rail > *:nth-child(1) { animation-delay: 0.05s; }
+.portfolio-rail > *:nth-child(2) { animation-delay: 0.15s; }
+.portfolio-rail > *:nth-child(3) { animation-delay: 0.25s; }
+
+.portfolio-main > .content-section:nth-child(1) { animation-delay: 0.2s; }
+.portfolio-main > .content-section:nth-child(2) { animation-delay: 0.32s; }
+.portfolio-main > .content-section:nth-child(3) { animation-delay: 0.44s; }
+.portfolio-main > .content-section:nth-child(4) { animation-delay: 0.56s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .portfolio-rail > *,
+    .portfolio-main > .content-section {
+        animation: none;
+        opacity: 1;
+    }
+}
+
 .intro-block {
     max-width: 560px;
 }
@@ -301,6 +336,7 @@ body::before {
 .project-card,
 .github-showcase,
 .toolkit-panel,
+.toolkit-group,
 .language-card,
 .activity-card {
     border: 1px solid var(--line);
@@ -438,12 +474,66 @@ body::before {
     color: var(--soft);
 }
 
+.panel-subtitle {
+    margin: 4px 0 0;
+    font-size: 0.82rem;
+    color: var(--muted);
+}
+
+.toolkit-groups {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.toolkit-group {
+    padding: clamp(14px, 1.8vw, 18px);
+}
+
+.toolkit-group__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.toolkit-icon {
+    display: inline-grid;
+    flex: none;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    color: var(--accent);
+    border: 1px solid rgb(79 195 247 / 0.22);
+    border-radius: 6px;
+    background: var(--accent-soft);
+}
+
+.toolkit-icon svg {
+    width: 15px;
+    height: 15px;
+}
+
+.toolkit-group h4 {
+    margin: 0;
+    font-size: 0.72rem;
+    font-weight: 850;
+    color: var(--soft);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
 .tech-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     align-items: center;
     justify-content: center;
+}
+
+.toolkit-group .tech-grid {
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }
 
 .tech-badge {
@@ -465,18 +555,15 @@ body::before {
 
 .tech-php { background: #6e62b6; }
 .tech-laravel { background: #ff2d20; }
-.tech-js { color: #090909; background: #f7df1e; }
 .tech-vite { background: #6868ff; }
-.tech-node { background: #249b3f; }
 .tech-css { background: #2369c9; }
-.tech-bootstrap { background: #7952b3; }
 .tech-html { background: #e34f26; }
-.tech-git { background: #f05033; }
-.tech-github { background: #202226; }
 .tech-postgres { background: #4169e1; }
-.tech-mysql { background: #2d7290; }
-.tech-sqlite { background: #0f6d97; }
-.tech-linux { color: #111; background: #f8c517; }
+.tech-vue { background: #41b883; }
+.tech-api { background: #2563eb; }
+.tech-mvc { background: #475569; }
+.tech-redis { background: #d82c20; }
+.tech-docker { background: #2496ed; }
 
 .github-showcase {
     display: grid;
@@ -673,7 +760,8 @@ body::before {
 
     .timeline-item,
     .profile-card,
-    .insight-grid {
+    .insight-grid,
+    .toolkit-groups {
         grid-template-columns: 1fr;
     }
 

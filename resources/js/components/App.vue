@@ -6,8 +6,8 @@
 
         <main class="portfolio-main">
             <AboutSection />
-            <ExperienceSection />
             <ProjectsSection />
+            <ExperienceSection />
             <GithubStats />
         </main>
     </div>

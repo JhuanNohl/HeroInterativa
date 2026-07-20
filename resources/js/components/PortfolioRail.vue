@@ -10,14 +10,14 @@
 
         <nav class="section-nav" aria-label="Navegação principal">
             <a href="#sobre"><span></span>Sobre</a>
-            <a href="#experiencia"><span></span>Experiência</a>
             <a href="#projetos"><span></span>Projetos</a>
+            <a href="#experiencia"><span></span>Experiência</a>
             <a href="#github-stats"><span></span>GitHub</a>
         </nav>
 
         <div class="social-links" aria-label="Perfis sociais">
             <a href="https://github.com/JhuanNohl" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/in/jhuan-nohl-9815a9210/" target="_blank"
+            <a href="https://www.linkedin.com/in/jhuannohl" target="_blank"
                 rel="noreferrer">LinkedIn</a>
             <a href="https://github.com/JhuanNohl?tab=repositories" target="_blank"
                 rel="noreferrer">Repositórios</a>

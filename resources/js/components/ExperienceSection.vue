@@ -5,40 +5,35 @@
 
         <div class="timeline-list">
             <article class="timeline-item">
-                <span>Finalizado</span>
+                <span>01</span>
                 <div>
-                    <h3>Aplicações Full Stack com Laravel</h3>
+                    <h3>Suporte técnico e infraestrutura</h3>
                     <p>
-                        Desenvolvimento de aplicações com arquitetura MVC, organização de rotas,
-                        views, controllers, assets com Vite e estrutura preparada para manutenção,
-                        deploy e evolução contínua.
+                        Diagnóstico de falhas, redes, sistemas, atendimento remoto, Linux
+                        embarcado e suporte a soluções de controle de acesso.
                     </p>
-                    <ul class="tag-list" aria-label="Tecnologias usadas">
-                        <li>PHP</li>
-                        <li>Laravel</li>
-                        <li>Blade</li>
-                        <li>Vite</li>
-                        <li>MVC</li>
-                        <li>Vercel</li>
-                    </ul>
                 </div>
             </article>
 
             <article class="timeline-item">
-                <span>Em Andamento</span>
+                <span>02</span>
                 <div>
-                    <h3>Integração com APIs e dados dinâmicos</h3>
+                    <h3>Desenvolvimento com Laravel</h3>
                     <p>
-                        Consumo de APIs públicas para exibição de métricas, dados de perfil,
-                        linguagens utilizadas e indicadores em tempo real, aplicando organização
-                        de código, manipulação de dados e atualização dinâmica da interface.
+                        Construção de aplicações corporativas com arquitetura MVC, autenticação,
+                        permissões, APIs e bancos de dados relacionais.
                     </p>
-                    <ul class="tag-list" aria-label="Tecnologias usadas">
-                        <li>JavaScript</li>
-                        <li>API REST</li>
-                        <li>Fetch</li>
-                        <li>UI dinâmica</li>
-                    </ul>
+                </div>
+            </article>
+
+            <article class="timeline-item">
+                <span>03</span>
+                <div>
+                    <h3>Aplicações Full Stack</h3>
+                    <p>
+                        Integração entre Laravel, Vue.js e Inertia.js, além de testes
+                        automatizados, Redis e deploy com Docker.
+                    </p>
                 </div>
             </article>
         </div>

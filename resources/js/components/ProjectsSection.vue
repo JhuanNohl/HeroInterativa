@@ -7,17 +7,23 @@
             <article class="project-card">
                 <div>
                     <p>Projeto FullStack</p>
-                    <h3>Nome do Projeto</h3>
+                    <h3>ZKTeco - Intranet V2</h3>
                 </div>
                 <p>
-                    Descrição do projeto full stack.
+                    Intranet corporativa da ZKTeco Brasil, construída com Laravel 13, Inertia.js e Vue 3.
+                    Centraliza documentos, comunicados e rotinas dos setores em uma aplicação única,
+                    autenticada, com navegação e experiência consistentes.
                 </p>
                 <ul class="tag-list" aria-label="Tecnologias usadas">
                     <li>PHP 8.3+</li>
                     <li>Laravel 13</li>
+                    <li>Vue.js</li>
+                    <li>Inertia.js</li>
+                    <li>PostgreSQL</li>
                 </ul>
-                <a href="#" target="_blank" rel="noreferrer">Ver repositório</a>
-                <img src="" alt="Descrição da imagem" />
+                <a href="https://github.com/JhuanNohl" target="_blank" rel="noreferrer">Repositório Privado</a>
+                <img src="https://res.cloudinary.com/dgztg4ry9/image/upload/v1784722718/IntranetV2_e4h8ep.gif"
+                    alt="Descrição da imagem" />
             </article>
 
             <article class="project-card">
@@ -38,8 +44,6 @@
                     <li>PHP 8.3+</li>
                     <li>Laravel 13</li>
                     <li>Blade</li>
-                    <li>CSS</li>
-                    <li>JavaScript</li>
                     <li>PostgreSQL</li>
                 </ul>
                 <a href="https://github.com/JhuanNohl" target="_blank" rel="noreferrer">Repositório Privado</a>
@@ -61,9 +65,7 @@
                 <ul class="tag-list" aria-label="Tecnologias usadas">
                     <li>PHP 8.3+</li>
                     <li>Laravel 13</li>
-                    <li>Blade</li>
                     <li>Tailwind CSS</li>
-                    <li>Vite</li>
                 </ul>
                 <a href="https://github.com/JhuanNohl/Cliento" target="_blank" rel="noreferrer">Ver
                     repositório</a>
@@ -78,18 +80,27 @@
             <article class="project-card">
                 <div>
                     <p>Projeto Front-end</p>
-                    <h3>Nome do Projeto</h3>
+                    <h3>O.T.O. - Organizador Financeiro</h3>
                 </div>
                 <p>
-                    Descrição do projeto front-end.
+                    OTO é um organizador financeiro em desenvolvimento, criado para registrar
+                    entradas e saídas de forma simples, acompanhar o saldo e apoiar uma visão mais clara da rotina
+                    financeira.
+                </p>
+                <p>
+                    O projeto está sendo desenvolvido de forma autoral a partir de um MVP encontrado no GitHub.
+                    A base inicial foi adaptada para validar ideias próprias de interface, organização visual e fluxo de
+                    uso.
                 </p>
                 <ul class="tag-list" aria-label="Tecnologias usadas">
                     <li>HTML5</li>
                     <li>CSS</li>
                     <li>JavaScript</li>
+                    <li>SupaBase</li>
                 </ul>
-                <a href="#" target="_blank" rel="noreferrer">Ver repositório</a>
-                <img src="" alt="Descrição da imagem" />
+                <a href="https://github.com/JhuanNohl/OTO" target="_blank" rel="noreferrer">Ver repositório</a>
+                <img src="https://res.cloudinary.com/dgztg4ry9/image/upload/v1781726143/OTO-Desktop_j65msh.gif"
+                    alt="Descrição da imagem" />
             </article>
 
             <article class="project-card">
@@ -101,7 +112,8 @@
                     UseNohl é uma experiência de e-commerce front-end para uma loja de roupas e acessórios,
                     criada com foco em navegação simples, identidade visual consistente e recursos
                     interativos que simulam uma jornada real de compra.
-                    <br />
+                </p>
+                <p>
                     O projeto foi desenvolvido como primeiro projeto front-end após a conclusão
                     de estudos em HTML, CSS e JavaScript, reunindo catálogo de produtos,
                     carrinho, autenticação local, perfil de usuário e pré-checkout em uma aplicação estática..

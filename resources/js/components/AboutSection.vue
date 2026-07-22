@@ -1,6 +1,7 @@
 <template>
     <section class="content-section" id="sobre" aria-labelledby="sobre-title">
         <p class="section-label">Sobre</p>
+        <h2>Infraestrutura E Desenvolvimento</h2>
 
         <div class="prose-stack">
             <p>
